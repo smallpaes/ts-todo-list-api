@@ -1,0 +1,7 @@
+{
+  "tabWidth": 2,
+  "singleQuote": true,
+  "semi": true,
+  "editor.formatOnSave": true,
+  "trailingComma": "all"
+}
