@@ -6,6 +6,7 @@ if (process.env.NODE_ENV !== 'production') {
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { DataSource } from "typeorm";
+import Task from './src/tasks/task.entity';
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
@@ -16,8 +17,9 @@ export const AppDataSource = new DataSource({
   port: 3306,
   username: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
-  database: process.env.MYSQL_DATABASE,
+  database: process.env.MYSQL_DB,
   synchronize: true,
+  entities: [Task]
 });
 
 // parse request body json and attach to req.body
