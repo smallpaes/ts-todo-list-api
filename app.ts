@@ -1,4 +1,4 @@
-import express, { Express, Request, Response }  from 'express';
+import express, { Express }  from 'express';
 import * as dotenv from 'dotenv';
 if (process.env.NODE_ENV !== 'production') { 
   dotenv.config();
@@ -7,6 +7,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import { DataSource } from "typeorm";
 import Task from './src/tasks/task.entity';
+import taskRouter from './src/tasks/task.router';
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
@@ -29,9 +30,7 @@ app.use(bodyParser.json());
 // use cors
 app.use(cors());
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
+app.use('/tasks', taskRouter);
 
 AppDataSource.initialize()
   .then(() => {
