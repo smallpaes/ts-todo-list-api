@@ -8,6 +8,6 @@ router.get('/', taskController.getAll);
 
 router.post('/', createValidator, taskController.postNewTask);
 
-router.patch('/', updateValidator, taskController.patchUpdate);
+router.patch('/', updateValidator, taskController.patchUpdateStatus);
 
 export default router;

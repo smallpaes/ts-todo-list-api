@@ -42,7 +42,7 @@ class TaskController {
     }
   }
 
-  public async patchUpdate(req: Request, res: Response): Promise<Response> {
+  public async patchUpdateStatus(req: Request, res: Response): Promise<Response> {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
