@@ -12,6 +12,13 @@ import taskRouter from './src/tasks/task.router';
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
+// parse request body json and attach to req.body
+// as javascript object
+app.use(bodyParser.json());
+
+// use cors
+app.use(cors());
+
 export const AppDataSource = new DataSource({
   type: "mysql",
   host: "localhost",
@@ -20,21 +27,15 @@ export const AppDataSource = new DataSource({
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DB,
   synchronize: true,
-  entities: [Task]
+  entities: [Task],
+  logging: ["error"]
 });
 
-// parse request body json and attach to req.body
-// as javascript object
-app.use(bodyParser.json());
-
-// use cors
-app.use(cors());
-
-app.use('/tasks', taskRouter);
 
 AppDataSource.initialize()
   .then(() => {
-    console.log("Data source initialized")
     app.listen(port, () => console.log(`App is running on port ${port}`))
   })
   .catch(e => console.error("Error initializing data source: ", e))
+
+app.use('/tasks', taskRouter);

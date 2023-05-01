@@ -2,3 +2,15 @@
 
 GET http://localhost:3000/tasks
 Content-Type: application/json
+
+### Create a task
+POST http://localhost:3000/tasks
+Content-Type: application/json
+
+{
+  "title": "Task 2",
+  "description": "Description 2",
+  "date": "2023-05-01T12:00:00Z",
+  "status": "To Do",
+  "priority": "High"
+}
