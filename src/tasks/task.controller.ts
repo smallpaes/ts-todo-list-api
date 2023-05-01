@@ -25,17 +25,16 @@ class TaskController {
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    
-    const newTask = new Task();
-    newTask.title = req.body.title;
-    newTask.description = req.body.description;
-    newTask.date = req.body.date;
-    newTask.status = req.body.status;
-    newTask.description = req.body.description;
 
     let createdTask: Task;
     try {
-      createdTask = await AppDataSource.getRepository(Task).save(newTask);
+      createdTask = await AppDataSource.getRepository(Task).save({
+        title: req.body.title,
+        description: req.body.description,
+        date: req.body.date,
+        status: req.body.status,
+        priority: req.body.priority
+      });
       createdTask = instanceToPlain(createdTask) as Task;
       return res.status(201).json(createdTask);
     } catch (e) {
