@@ -30,3 +30,17 @@ export const createValidator: ValidationChain[] = [
     .isIn([Status.TODO, Status.IN_PROGRESS, Status.DONE])
     .withMessage('Status must be one of: TODO, IN_PROGRESS, DONE'),
 ];
+
+export const updateValidator: ValidationChain[] = [
+  body('id')
+    .not()
+    .isEmpty()
+    .withMessage('Task id is required')
+    .trim()
+    .isUUID()
+    .withMessage('Task id must be a valid UUID'),
+  body('status')
+    .trim()
+    .isIn([Status.TODO, Status.IN_PROGRESS, Status.DONE])
+    .withMessage('Status must be one of: TODO, IN_PROGRESS, DONE'),
+]

@@ -14,3 +14,12 @@ Content-Type: application/json
   "status": "To Do",
   "priority": "High"
 }
+
+### Update a task
+PATCH http://localhost:3000/tasks
+Content-Type: application/json
+
+{
+  "id": "cd2f7616-99e4-4dfc-ac3c-e9818699d668",
+  "status": "Done"
+}
