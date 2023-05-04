@@ -11,7 +11,7 @@ class TaskController {
     try {
       allTasks = await AppDataSource.getRepository(Task).find({
         order: {
-          date: "ASC"
+          date: "DESC"
         }
       });
       allTasks = instanceToPlain(allTasks) as Task[];
@@ -31,7 +31,7 @@ class TaskController {
       createdTask = await AppDataSource.getRepository(Task).save({
         title: req.body.title,
         description: req.body.description,
-        date: req.body.date,
+        date: new Date(req.body.date),
         status: req.body.status,
         priority: req.body.priority
       });

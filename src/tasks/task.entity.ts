@@ -16,7 +16,7 @@ export default class Task {
     type: 'varchar',
     length: 255
   })
-  date: string;
+  date: Date;
 
   @Column({
     type: 'longtext'
